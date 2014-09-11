@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Conference</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_configuracion__server">Configuracion_Server</string>
+    <string name="title_activity_servidor">Servidor</string>
+    
+    <string name="Servidor">Emitir</string>
+    <string name="Cliente">Escuchar</string>
+    <string name="Continuar">Empezar</string>
+    
+    
+    <string name="Elige_Server_Cliente">¿Que deseas hacer?</string>
+    <string name="Nombre">Nombra tu canal</string>
+    <string name="Codec">Códecc</string>
+    <string name="codec_1">PCMA</string>
+    <string name="codec_2">PCMU</string>
+    <string name="codec_3">Códec 3</string>
+    
+    <string name="Nombre_servidor">Nombre del canal: </string>
+    <string name="Nombre_codec">CODEC: </string>
+    <string name="direccion_IP">IP del canal: </string>
+    <string name="Iniciar_servidor"> INICIAR </string>
+    
+    
+    <string name="Clientes_conectados">Clientes conectados: r</string>
+    
+    <string name="pista_txt_nombre_servidor">Nombre del canal</string>
+    
+    
+ <string name="error_vacio_configurar_server">Debes ingresar un nombre para tu canal</string>
+
+</resources>
