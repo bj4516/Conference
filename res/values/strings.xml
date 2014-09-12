@@ -17,13 +17,13 @@
     <string name="Codec">Códecc</string>
     <string name="codec_1">PCMA</string>
     <string name="codec_2">PCMU</string>
-    <string name="codec_3">Códec 3</string>
+    <string name="codec_3">GMS</string>
     
     <string name="Nombre_servidor">Nombre del canal: </string>
     <string name="Nombre_codec">CODEC: </string>
     <string name="direccion_IP">IP del canal: </string>
     <string name="Iniciar_servidor"> INICIAR </string>
-    
+    <string name="Parar_servidor"> DETENER </string>
     
     <string name="Clientes_conectados">Clientes conectados: r</string>
     

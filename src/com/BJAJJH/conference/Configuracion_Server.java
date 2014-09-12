@@ -25,6 +25,7 @@ public class Configuracion_Server extends Activity {
 		final TextView texto = (TextView) findViewById(R.id.txt_Nombre_servidor);
 		final RadioButton Rbtn1 = (RadioButton) findViewById(R.id.rbt_PCMA);
 		final RadioButton Rbtn2 = (RadioButton) findViewById(R.id.rbt_PCMU);
+		final RadioButton Rbtn3 = (RadioButton) findViewById(R.id.rbt_GSM);
 		Rbtn1.setChecked(true);
 		CODEC = 1;
 		Rbtn1.setOnClickListener(new OnClickListener() {
@@ -34,6 +35,7 @@ public class Configuracion_Server extends Activity {
 				// TODO Auto-generated method stub
 				Rbtn1.setChecked(true);
 				Rbtn2.setChecked(false);
+				Rbtn3.setChecked(false);
 				CODEC = 1;
 			}
 		});
@@ -45,7 +47,20 @@ public class Configuracion_Server extends Activity {
 				// TODO Auto-generated method stub
 				Rbtn1.setChecked(false);
 				Rbtn2.setChecked(true);
+				Rbtn3.setChecked(false);
 				CODEC = 2;
+			}
+		});
+		
+		Rbtn3.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Rbtn1.setChecked(false);
+				Rbtn3.setChecked(true);
+				Rbtn2.setChecked(false);
+				CODEC = 3;
 			}
 		});
 		

@@ -1,8 +1,12 @@
 package com.BJAJJH.conference;
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.net.InetAddress;
@@ -21,6 +25,9 @@ import android.util.Log;
 
 public class Servidor extends Activity {
 
+	
+	public boolean transmitir = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,42 +43,77 @@ public class Servidor extends Activity {
 		String codec_nombre;
 		if (CODEC == 1) {
 			codec_nombre = getString(R.string.codec_1);
-		} else {
+		} else if (CODEC == 2) {
 			codec_nombre = getString(R.string.codec_2);
+		} else {
+			codec_nombre = getString(R.string.codec_3);
 		}
 		txt_CODEC.setText(getString(R.string.Nombre_codec) + codec_nombre);
 		
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		  StrictMode.setThreadPolicy(policy);
-		  
-		  //incia el servidor
-		  try {   
-		      AudioManager audio =  (AudioManager) getSystemService(Context.AUDIO_SERVICE); 
-		      audio.setMode(AudioManager.MODE_IN_COMMUNICATION);
-		      AudioGroup audioGroup = new AudioGroup();
-		      audioGroup.setMode(AudioGroup.MODE_NORMAL);      
-		      byte[] ip = getLocalIPAddress ();
-		      txt_DIRE.setText(getString(R.string.direccion_IP) + new String(ip));
-		      AudioStream audioStream = new AudioStream(InetAddress.getByAddress(ip));
-		      switch(CODEC){
-		      case 1:
-		    	  audioStream.setCodec(AudioCodec.GSM);
-		    	  break;
-		      case 2:
-		    	  audioStream.setCodec(AudioCodec.PCMU);
-		      }
-		    	  
-		      
-		      audioStream.setMode(RtpStream.MODE_NORMAL);
-		                           //set receiver(vlc player) machine ip address(please update with your machine ip)
-		      audioStream.associate(InetAddress.getByAddress(new byte[] {(byte)192, (byte)168, (byte)2, (byte)2 }), 22222);
-		      audioStream.join(audioGroup);
-		     
-		   
-		  } catch (Exception e) {
-		   Log.e("----------------------", e.toString());
-		   e.printStackTrace();
-		  }
+		final Button btn_start = (Button) findViewById(R.id.btn_empezar_servidor);
+		
+		btn_start.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				//INCIA A TRASMITIR
+				if (transmitir){
+					transmitir = false;
+					btn_start.setText(getString(com.BJAJJH.conference.R.string.Iniciar_servidor));
+				} else {
+					transmitir = true;
+					btn_start.setText(getString(com.BJAJJH.conference.R.string.Parar_servidor));
+					
+				}
+			}
+		});
+		
+		while (true){
+			if (transmitir){
+				StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+				  StrictMode.setThreadPolicy(policy);
+				  
+				  //incia el servidor
+				  try {   
+				      AudioManager audio =  (AudioManager) getSystemService(Context.AUDIO_SERVICE); 
+				      audio.setMode(AudioManager.MODE_IN_COMMUNICATION);
+				      AudioGroup audioGroup = new AudioGroup();
+				      audioGroup.setMode(AudioGroup.MODE_NORMAL);      
+				      byte[] ip = getLocalIPAddress ();
+				      txt_DIRE.setText(getString(R.string.direccion_IP) + new String(ip));
+				      AudioStream audioStream = new AudioStream(InetAddress.getByAddress(ip));
+				      switch(CODEC){
+				      case 1:
+				    	  audioStream.setCodec(AudioCodec.PCMA);
+				    	  break;
+				      case 2:
+				    	  audioStream.setCodec(AudioCodec.PCMU);
+				    	  break;
+				      case 3:
+				    	  audioStream.setCodec(AudioCodec.GSM);
+				      }
+				    	  
+				      
+				      audioStream.setMode(RtpStream.MODE_NORMAL);
+				                           //set receiver(vlc player) machine ip address(please update with your machine ip)
+				      audioStream.associate(InetAddress.getByAddress(new byte[] {(byte)192, (byte)168, (byte)2, (byte)2 }), 22222);
+				      audioStream.join(audioGroup);
+				     while(transmitir){
+				    	 //esperando a que se acabe
+				     }
+				     audioStream.release();
+				     
+				   
+				  } catch (Exception e) {
+				   Log.e("----------------------", e.toString());
+				   e.printStackTrace();
+				  }
+			}
+			
+		}
+		
+		
 	}
 
 	@Override

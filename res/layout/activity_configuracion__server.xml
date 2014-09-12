@@ -62,9 +62,17 @@
         android:id="@+id/btn_enviar_server_configuracion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/rbt_PCMU"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="49dp"
         android:text="@string/Continuar" />
+
+    <RadioButton
+        android:id="@+id/rbt_GSM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/rbt_PCMU"
+        android:layout_below="@+id/rbt_PCMU"
+        android:text="@string/codec_3" />
 
 </RelativeLayout>
